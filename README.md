@@ -1,5 +1,5 @@
-# Rpi_Homeserver
-
+# Rpi_Homeserver 
+<img src="https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001-300x267.png" width="100" height="89">
 An absolute beginners guide from Picking up a Pi from the shelves to get it up and running, hosting multiple servcies for an essential home server. 
 
 I will focus on things that needs to be modifed/personalised to get them working. As a lot of these solution are already avialable for Rpi and Docker seperately. But doing them together sometimes gets tricky.
