@@ -15,7 +15,7 @@ services:
     image: owncloud/server:${OWNCLOUD_VERSION}
     restart: always
     ports:
-      - ${HTTP_PORT}:8080  # You can modify this if hosting other services which require 8080, But since this is containerized, I'm leaving this default and handling it at the Router NAT level.
+      - ${HTTP_PORT}:8080  # Yoo don't need to touch this eventhough you have other services running on 8080. The .env handles the HTTP port which then automatically binds to 8080 internally.
     depends_on:
       - db
       - redis
