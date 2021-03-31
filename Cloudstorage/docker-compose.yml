@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
       - redis
-    environment:
+    environment:   # Change the default passwords as per your requirement.
       - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
       - OWNCLOUD_DB_TYPE=mysql
       - OWNCLOUD_DB_NAME=owncloud
