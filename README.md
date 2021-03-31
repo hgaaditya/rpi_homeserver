@@ -139,8 +139,6 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 10. Once inside you need to navigate to the `/var/www/owncloud/config/config.php` . But your bash should have already landed you in the home dir i.e. `/var/www/owncloud`
 11. So you can just `vi config/config.php` and append this line `'files_external_allow_create_new_local' => 'true',` as you see [here](Cloudstorage/config.php)
 ```
-   .
-   .
   'logtimezone' => 'UTC',
   'installed' => true,
   'instanceid' => 'oc5p34bmso83',
@@ -156,6 +154,31 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 1. This process is very similar to Owncloud . Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
 2. Create a Project directoy for Jellyfin just like you did for Owncloud.```cd mkdir jellyfin && cd jellyfin```
 3. Create a [docker-compose.yml](mediaserver/docker-compose.yml) file as attached/or as in the Official docs.
+```
+version: "3.5"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    user: root:root
+    network_mode: "host"
+    volumes:
+      - jellyfin-config:/config    # These volumees can either be created before and passed (as we have done here, refer the volumes section at the bottom) OR you can create them during the docker-compose run.
+      - jellyfin-cache:/cache
+      - /mnt/ext_hdd/:/media       # This will be your media storage. In my case it is same as my external HDD serving the cloud server. Modify this accordingly. The syntax is soruce:destination as in <host path>:<container path>.
+      - /mnt/ext_hdd/rpi_Scratchdisk:/config/transcodes  # This is required only if you are transcoding your media files, transcoding is very intense on the I/O and can kill  a flash drive overtime. So using my USB 3.0 HDD as a scratch disk to handle temp transcoding writes as it is much more resilient to random read/writes. Will post a better solution in future when I try something like a Ramdisk with mergerfs.
+    devices:
+      - /dev/vchiq:/dev/vchiq  # This is only specific for a Rpi. Other devices would use VAAPI and for that the respective render devices would have to be forwarded .
+    restart: "unless-stopped"
+    # Optional - alternative address used for autodiscovery
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://example.com
+volumes:
+  jellyfin-config:
+    external: true  # this tag is only needed is passing volumes created before hand. Otherwise this can be omitted.
+  jellyfin-cache:
+    external: true
+```
 >  I'd suggest you go through the comments added in the above file for this one as it has some changes that are necessary for proper fucntioning.
 4. Now we can create volumes (Not mandatory, docker-compose can create them during startup. But I had created them already so passing them externally refer the volumes section at the bottom of the [docker-compose.yml](mediaserver/docker-compose.yml) file. )
 	- docker volume create jellyfin-config
@@ -170,6 +193,37 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 1. This is probably the simples of them all,But still give the [Official Doc](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker) a quick read.
 2. Create a Project directoy for Pihole like you did earlier. ```cd mkdir pihole && cd pihole```.
 3. Create a [docker-compose.yml](pihole/docker-compose.yml) file as attached or as in the Official Git.
+```
+version: "3"
+
+# https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:     # I am not running DHCP on the pihole , just DNS so leaving them as it is. Problem with most Indian routers is that they do not allow your DNS and LAN IPs to be in the same subnet :( . Which is stupid, but that's how it is. 
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'America/Chicago'  # Change this according to your region. Otherwise debugging can become a headache.
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      # run `touch ./var-log/pihole.log` first unless you like errors
+      # - './var-log/pihole.log:/var/log/pihole.log'
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+```
 4. Just run ```sudo docker-compose up -d```. 
 5. It's that easy!. Verify by running ```sudo docker ps -a```.
 6. Now you have a running Pihole DNS server. 
