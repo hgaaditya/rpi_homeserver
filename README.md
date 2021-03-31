@@ -138,6 +138,15 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 	- ```sudo docker exec -it owncloud_owncloud_1 bash```
 10. Once inside you need to navigate to the `/var/www/owncloud/config/config.php` . But your bash should have already landed you in the home dir i.e. `/var/www/owncloud`
 11. So you can just `vi config/config.php` and append this line `'files_external_allow_create_new_local' => 'true',` as you see [here](Cloudstorage/config.php)
+```
+   .
+   .
+  'logtimezone' => 'UTC',
+  'installed' => true,
+  'instanceid' => 'oc5p34bmso83',
+  'files_external_allow_create_new_local' => 'true',
+);
+```
 12. Once done, you can exit from the container . And back in your project dir, just run the `docker-compose.yml` to recreate the container with the updated values.
 13. Since we have mentioned 8090 in the .env file above, you can now login to http://<dockerhost>:8090 and shoudl be able to see the login screen.
 
