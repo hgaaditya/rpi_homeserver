@@ -61,10 +61,13 @@ Now that we have docker up and running, we can go ahead and start installing our
 1. This process is very similar to Owncloud . Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
 2. Create a Project directoy for Jellyfin just like you did for Owncloud.```cd mkdir jellyfin && cd jellyfin```
 3. Create a [docker-compose.yml](mediaserver/docker-compose.yml) file as attached/or as in the Official docs.
-> I'd suggest you go through the comments added in the above file for this one as it has some changes that are necessary for proper fucntioning.
-4.Once the file is ready run ```sudo docker-compose up -d```.
-5.Bingo!. Verify that everything is working as epxpected ```sudo docker ps -a```.
-6. Your jellyfin home server is up and ready check it out on http://<localhost>:8096
+>  I'd suggest you go through the comments added in the above file for this one as it has some changes that are necessary for proper fucntioning.
+4. Now we can create volumes (Not mandatory, docker-compose can create them during startup. But I had created them already so passing them externally refer the volumes section at the bottom of the [docker-compose.yml](mediaserver/docker-compose.yml) file. )
+	- docker volume create jellyfin-config
+	- docker volume create jellyfin-cache	
+6. Once the file is ready run ```sudo docker-compose up -d```.
+7. Bingo!. Verify that everything is working as epxpected ```sudo docker ps -a```.
+8. Your jellyfin home server is up and ready check it out on http://<localhost>:8096
 
 
 ## Installing Pi-Hole
