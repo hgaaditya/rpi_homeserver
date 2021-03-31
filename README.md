@@ -1,4 +1,4 @@
-# Rpi_Homeserver 
+# RPi Homeserver 
 <img src="https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001-300x267.png" width="100" height="89">
 
 An absolute beginners guide to get a Rpi up and running, hosting multiple servcies for an essential home server. 
