@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    user: root:root
+    network_mode: "host"
+    volumes:
+      - jellyfin-config:/config
+      - jellyfin-cache:/cache
+      - /mnt/ext_hdd/:/media       # This will be your media storage. In my case it is same as my external HDD serving the cloud server. Modify this accordingly.
+      - /mnt/ext_hdd/rpi_Scratchdisk:/config/transcodes    # This is required only if you are transcoding your media files, transcoding is very intense on the I/O and can kill a flash drive overtime. So using my USB 3.0 HDD as a scratch disk to handle temp transcoding writes.
+    devices:
+      - /dev/vchiq:/dev/vchiq  # This is only specific for a Rpi. Other devices would use VAAPI and for that the respective render devices would have to be forwarded .
+    restart: "unless-stopped"
+    # Optional - alternative address used for autodiscovery
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://example.com
+volumes:
+  jellyfin-config:
+    external: true
+  jellyfin-cache:
+    external: true
