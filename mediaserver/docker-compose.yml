@@ -6,7 +6,7 @@ services:
     user: root:root
     network_mode: "host"
     volumes:
-      - jellyfin-config:/config
+      - jellyfin-config:/config    # These volumees can either be created before and passed (as we have done here, refer the volumes section at the bottom) OR you can create them during the docker-compose run.
       - jellyfin-cache:/cache
       - /mnt/ext_hdd/:/media       # This will be your media storage. In my case it is same as my external HDD serving the cloud server. Modify this accordingly. The syntax is soruce:destination as in <host path>:<container path>.
       - /mnt/ext_hdd/rpi_Scratchdisk:/config/transcodes  # This is required only if you are transcoding your media files, transcoding is very intense on the I/O and can kill  a flash drive overtime. So using my USB 3.0 HDD as a scratch disk to handle temp transcoding writes as it is much more resilient to random read/writes. Will post a better solution in future when I try something like a Ramdisk with mergerfs.
@@ -18,6 +18,6 @@ services:
       - JELLYFIN_PublishedServerUrl=http://example.com
 volumes:
   jellyfin-config:
-    external: true
+    external: true  # this tag is only needed is passing volumes created before hand. Otherwise o
   jellyfin-cache:
     external: true
