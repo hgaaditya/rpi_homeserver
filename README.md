@@ -240,6 +240,7 @@ services:
 
 
 ### There you have it . A Rpi hosting your basic services over Docker.
+### This is just the first part. I will follow this up with how to further set these up and tweak them for your liking. This was just the installation related part.
 
 
 PS: Again this is not a how to do it best,or the most this, most that. This guide doesn't claim to be anything but a guide just to help you get things up and running if you haven't played with similar stuff before. 
