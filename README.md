@@ -43,7 +43,7 @@ Now that we have docker up and running, we can go ahead and start installing our
 4. Create a [.env](Cloudstorage/.env) file as attached/ or as in the official docs.
 5. Please go thorugh the comments I have added as it might save you some headache later on. Again only if you are an abolute noob like I am.
 6. Once you have your files ready. Go ahead and run ```sudo docker-compose up -d``` from the same directory.
-7. That's it. Well mostly. You should now have the following containers runnign which you cn check by running ```sudo docker ps -a```
+7. That's it. Well mostly. You should now have the following containers runnign which you can check by running ```sudo docker ps -a```
       - owncloud_owncloud_1 # the service and the webserver.
       - owncloud_redis_1 # The Redis container.
       - owncloud_bd_1 # The MySQL container. 
