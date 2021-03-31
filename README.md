@@ -47,7 +47,7 @@ Now that we have docker up and running, we can go ahead and start installing our
 1. Head over to the official Owncloud installtion page and give it a quick read.
 2. setup up a project dir for Owncloud ```cd mkdir owncloud && cd owncloud```
 3. Create a [docker-compose.yml](Cloudstorage/docker-compose.yml) file as attached/or as in the Official docs.
-```
+```yaml
 version: '2.1'  # Everything is default from the owncloud git other than the storage mount, which is commented below.
 
 volumes:
@@ -122,7 +122,7 @@ services:
       - redis:/var/lib/redis
 ```
 4. Create a [.env](Cloudstorage/.env) file as attached/ or as in the official docs.
-```
+```env
 OWNCLOUD_VERSION=10.7
 OWNCLOUD_DOMAIN=localhost:8080
 ADMIN_USERNAME=admin
@@ -141,7 +141,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 	- ```sudo docker exec -it owncloud_owncloud_1 bash```
 10. Once inside you need to navigate to the `/var/www/owncloud/config/config.php` . But your bash should have already landed you in the home dir i.e. `/var/www/owncloud`
 11. So you can just `vi config/config.php` and append this line `'files_external_allow_create_new_local' => 'true',` as you see [here](Cloudstorage/config.php)
-```
+```php
   'logtimezone' => 'UTC',
   'installed' => true,
   'instanceid' => 'oc5p34bmso83',
@@ -158,7 +158,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 1. This process is very similar to Owncloud . Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
 2. Create a Project directoy for Jellyfin just like you did for Owncloud.```cd mkdir jellyfin && cd jellyfin```
 3. Create a [docker-compose.yml](mediaserver/docker-compose.yml) file as attached/or as in the Official docs.
-```
+```yaml
 version: "3.5"
 services:
   jellyfin:
@@ -198,7 +198,7 @@ volumes:
 1. This is probably the simples of them all,But still give the [Official Doc](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker) a quick read.
 2. Create a Project directoy for Pihole like you did earlier. ```cd mkdir pihole && cd pihole```.
 3. Create a [docker-compose.yml](pihole/docker-compose.yml) file as attached or as in the Official Git.
-```
+```yaml
 version: "3"
 
 # https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
@@ -243,7 +243,7 @@ Once you cross this initial barrier. You should be pretty acquainted with the Rp
 	- Securing the whole setup, and even individually.
 	- Implementing performace enhancements like a RAMdisk for the media server for faster trasncoding.
 
-This are just my `to-do` things . But he possibilities are endless. You can integrate home automation extremely easily if you have smart devices already setup as well.
+This are just my `to-do` things . But the possibilities are endless. You can integrate home automation extremely easily if you have smart devices already setup as well.
 
 
     
