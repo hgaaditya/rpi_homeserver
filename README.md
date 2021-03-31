@@ -44,6 +44,80 @@ Now that we have docker up and running, we can go ahead and start installing our
 1. Head over to the official Owncloud installtion page and give it a quick read.
 2. setup up a project dir for Owncloud ```cd mkdir owncloud && cd owncloud```
 3. Create a [docker-compose.yml](Cloudstorage/docker-compose.yml) file as attached/or as in the Official docs.
+```
+version: '2.1'  # Everything is default from the owncloud git other than the storage mount, which is commented below.
+
+volumes:
+  files:
+    driver: local
+  mysql:
+    driver: local
+  backup:
+    driver: local
+  redis:
+    driver: local
+
+services:
+  owncloud:
+    image: owncloud/server:${OWNCLOUD_VERSION}
+    restart: always
+    ports:
+      - ${HTTP_PORT}:8080  # Yoo don't need to touch this eventhough you have other services running on 8080. The .env handles the HTTP port which then automatically binds to 8080 internally.
+    depends_on:
+      - db
+      - redis
+    environment:   # Change the default passwords as per your requirement.
+      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
+      - OWNCLOUD_DB_TYPE=mysql
+      - OWNCLOUD_DB_NAME=owncloud
+      - OWNCLOUD_DB_USERNAME=owncloud
+      - OWNCLOUD_DB_PASSWORD=owncloud
+      - OWNCLOUD_DB_HOST=db
+      - OWNCLOUD_ADMIN_USERNAME=${ADMIN_USERNAME}
+      - OWNCLOUD_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - OWNCLOUD_MYSQL_UTF8MB4=true
+      - OWNCLOUD_REDIS_ENABLED=true
+      - OWNCLOUD_REDIS_HOST=redis
+    healthcheck:
+      test: ["CMD", "/usr/bin/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - files:/mnt/data
+      - /mnt/ext_hdd:/mnt/ext_storage   # This will be your actual storage for the Cloudserver. I have mounted a 4TB external USB 3.0 HDD [IMP: Please automount your disks using etc/fstab before doing this]
+  db:
+    image: webhippie/mariadb:latest
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=owncloud
+      - MARIADB_USERNAME=owncloud
+      - MARIADB_PASSWORD=owncloud
+      - MARIADB_DATABASE=owncloud
+      - MARIADB_MAX_ALLOWED_PACKET=128M
+      - MARIADB_INNODB_LOG_FILE_SIZE=64M
+    healthcheck:
+      test: ["CMD", "/usr/bin/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - mysql:/var/lib/mysql
+      - backup:/var/lib/backup
+
+  redis:
+    image: webhippie/redis:latest
+    restart: always
+    environment:
+      - REDIS_DATABASES=1
+    healthcheck:
+      test: ["CMD", "/usr/bin/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - redis:/var/lib/redis
+```
 4. Create a [.env](Cloudstorage/.env) file as attached/ or as in the official docs.
 5. Please go thorugh the comments I have added as it might save you some headache later on. Again only if you are an abolute noob like I am.
 6. Once you have your files ready. Go ahead and run ```sudo docker-compose up -d``` from the same directory.
