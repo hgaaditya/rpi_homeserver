@@ -9,6 +9,7 @@ I will focus on things that needs to be modifed/personalised to get them working
 Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 for my installtion just because of it's widespread community and ease of use. (But this turned   out to be not the greatest chioce since Rpi OS is still the only OS which support some nifty functions like HWA,but more on that later)
 
   ### Installing OS
+  <img src="https://www.shareicon.net/data/256x256/2015/07/27/75996_ubuntu_256x256.png" width="75" height="75">
 
     1. Download the latest image from https://ubuntu.com/download/raspberry-pi
     2. Download the Raspberry Pi Imager from https://www.raspberrypi.org/software/
@@ -16,6 +17,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
     4. The installer is pretty straightforward and you just select the image and disk and jsut hit install .
 
 ## Installing Docker. 
+<img src="https://cdn.iconscout.com/icon/free/png-256/social-275-116309.png" width="75" height="75">
 
 > Before you begin. As of writing this, there is something wrong with arm64 repo of docker. Which doesn't let you install using the repo. So you have to manually download the packages and install them using the guide https://docs.docker.com/engine/install/ubuntu/#install-from-a-package. But seems like something pretty trivial and shoudl be fixed pretty soon.So do check it out.
 
@@ -38,6 +40,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
  7. That's it. For real this time. Verify by running `docker-compose --version` .
 
 ## Installing Owncloud Storage server
+<img src="https://cloudash64.net/owncloud/core/img/favicon-touch.svg" width="75" height="75">
 
 Now that we have docker up and running, we can go ahead and start installing our services, which are basically creating a `docker-compose.yml` file and letting docker do all the heavy lifting :).
 
@@ -150,6 +153,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 
 
 ## Installing Jellying Media Server
+<img src="https://developer.asustor.com/uploadIcons/0020_999_1568614457_Jellyfin_256.png" width="75" height="75">
 
 1. This process is very similar to Owncloud . Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
 2. Create a Project directoy for Jellyfin just like you did for Owncloud.```cd mkdir jellyfin && cd jellyfin```
@@ -189,6 +193,7 @@ volumes:
 
 
 ## Installing Pi-Hole
+<img src="https://developer.asustor.com/uploadIcons/0020_110807_1589822880_icon%20256.png" width="75" height="75">
 
 1. This is probably the simples of them all,But still give the [Official Doc](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker) a quick read.
 2. Create a Project directoy for Pihole like you did earlier. ```cd mkdir pihole && cd pihole```.
