@@ -9,7 +9,7 @@ services:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
       - /mnt/ext_hdd/:/media       # This will be your media storage. In my case it is same as my external HDD serving the cloud server. Modify this accordingly.
-      - /mnt/ext_hdd/rpi_Scratchdisk:/config/transcodes    # This is required only if you are transcoding your media files, transcoding is very intense on the I/O and can kill a flash drive overtime. So using my USB 3.0 HDD as a scratch disk to handle temp transcoding writes.
+      - /mnt/ext_hdd/rpi_Scratchdisk:/config/transcodes  # This is required only if you are transcoding your media files, transcoding is very intense on the I/O and can kill  a flash drive overtime. So using my USB 3.0 HDD as a scratch disk to handle temp transcoding writes as it is much more resilient to random read/writes. Will post a better solution in future when I try something like a Ramdisk with mergerfs.
     devices:
       - /dev/vchiq:/dev/vchiq  # This is only specific for a Rpi. Other devices would use VAAPI and for that the respective render devices would have to be forwarded .
     restart: "unless-stopped"
