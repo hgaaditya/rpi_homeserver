@@ -119,6 +119,14 @@ services:
       - redis:/var/lib/redis
 ```
 4. Create a [.env](Cloudstorage/.env) file as attached/ or as in the official docs.
+```
+OWNCLOUD_VERSION=10.7
+OWNCLOUD_DOMAIN=localhost:8080
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin
+HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don't need to modify the docker-compose . You can just use any free port and pass it here so that it                     will bind to the 8080 port of the owncloud conatiner.
+
+```
 5. Please go thorugh the comments I have added as it might save you some headache later on. Again only if you are an abolute noob like I am.
 6. Once you have your files ready. Go ahead and run ```sudo docker-compose up -d``` from the same directory.
 7. That's it. Well mostly. You should now have the following containers runnign which you can check by running ```sudo docker ps -a```
