@@ -20,6 +20,7 @@ By the end if it, you'll have:
 
 Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 for my installation just because of its widespread community and ease of use. (But this turned out to be not the greatest choice since RPi OS is still the only OS which support some nifty functions like HWA, but more on that later). But Ubuntu should work for 99% of users.
 
+
 ## 1. Installing OS
   <img src="https://www.shareicon.net/data/256x256/2015/07/27/75996_ubuntu_256x256.png" width="75" height="75">
 
@@ -27,6 +28,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
 2. Download the Raspberry Pi Imager from https://www.raspberrypi.org/software/
 3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snappiness of your system.
 4. The installer is pretty straightforward, and you just select the image and disk and just hit install.
+
 
 ## 2. Installing Docker on RPi. 
 <img src="https://cdn.iconscout.com/icon/free/png-256/social-275-116309.png" width="75" height="75">
@@ -54,6 +56,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
 
 
 Now that we have docker up and running, we can go ahead and start installing our services, which is as simple as creating a `docker-compose.yml` file with all the details and  letting docker do all the heavy lifting :).
+
 
 ## 3. Installing Owncloud Storage server on Docker.
 <img src="https://cloudash64.net/owncloud/core/img/favicon-touch.svg" width="75" height="75">
@@ -144,17 +147,17 @@ ADMIN_PASSWORD=admin
 HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don't need to modify the docker-compose . You can just use any free port and pass it here so that it                     will bind to the 8080 port of the owncloud conatiner.
 
 ```
-5. Please go through the comments I have added as it might save you some headache later on. Only if you are an absolute noob like I am.
-6. Once you have your files ready. Go ahead and run ```sudo docker-compose up -d``` from the same directory.
-7. That's it. Well mostly. You should now have the following containers running which you can check by running ```sudo docker ps -a```
+> Please go through the comments I have added as it might save you some headache later on. Only if you are an absolute noob like I am.
+5. Once you have your files ready. Go ahead and run ```sudo docker-compose up -d``` from the same directory.
+6. That's it. Well mostly. You should now have the following containers running which you can check by running ```sudo docker ps -a```
       - owncloud_owncloud_1 # the service and the web server.
       - owncloud_redis_1 # The Redis container.
       - owncloud_bd_1 # The MySQL container. 
-8. Now you are almost done. But there is one thing you need to do if you want to host some local storage. Owncloud does not enable this by default and needs to be manually added as mentioned [here](https://doc.owncloud.com/server/admin_manual/configuration/files/external_storage/local.html)
-9. Once you have your containers running log into the main owncloud service container with the following command :
+7. Now you are almost done. But there is one thing you need to do if you want to host some local storage. Owncloud does not enable this by default and needs to be manually added as mentioned [here](https://doc.owncloud.com/server/admin_manual/configuration/files/external_storage/local.html)
+8. Once you have your containers running log into the main owncloud service container with the following command :
 	- ```sudo docker exec -it owncloud_owncloud_1 bash```
-10. Once inside you need to navigate to the `/var/www/owncloud/config/config.php`. But your bash should have already landed you in the home directory i.e. `/var/www/owncloud`
-11. So you can just `vi config/config.php` and append this line `'files_external_allow_create_new_local' => 'true',` as you see [here](Cloudstorage/config.php)
+9. Once inside you need to navigate to the `/var/www/owncloud/config/config.php`. But your bash should have already landed you in the home directory i.e. `/var/www/owncloud`
+10. So you can just `vi config/config.php` and append this line `'files_external_allow_create_new_local' => 'true',` as you see [here](Cloudstorage/config.php)
 ```php
   'logtimezone' => 'UTC',
   'installed' => true,
@@ -162,8 +165,8 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
   'files_external_allow_create_new_local' => 'true',
 );
 ```
-12. Once done, you can exit from the container. And back in your project directory, just run the `docker-compose.yml` to recreate the container with the updated values.
-13. Since we have mentioned 8090 as the port in the .env file above, you can now log in to `http://dockerhost:8090` and should be able to see the login screen.
+11. Once done, you can exit from the container. And back in your project directory, just run the `docker-compose.yml` to recreate the container with the updated values.
+12. Since we have mentioned 8090 as the port in the .env file above, you can now log in to `http://dockerhost:8090` and should be able to see the login screen.
 
 
 ## 4. Installing Jellying Media Server on Docker.
