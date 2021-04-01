@@ -165,7 +165,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
   'files_external_allow_create_new_local' => 'true',
 );
 ```
-11. Once done, you can exit from the container. And back in your project directory, just run the `docker-compose.yml` to recreate the container with the updated values.
+11. Once done, you can exit from the container. And back in your project directory, just run the `sudo docker restart owncloud_owncloud_1` to recreate the container with the updated values.
 12. Since we have mentioned 8090 as the port in the .env file above, you can now log in to `http://dockerhost:8090` and should be able to see the login screen.
 
 
