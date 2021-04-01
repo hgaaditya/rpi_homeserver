@@ -163,7 +163,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 );
 ```
 12. Once done, you can exit from the container. And back in your project directory, just run the `docker-compose.yml` to recreate the container with the updated values.
-13. Since we have mentioned 8090 in the .env file above, you can now log in to http://<dockerhost>:8090 and should be able to see the login screen.
+13. Since we have mentioned 8090 as the port in the .env file above, you can now log in to `http://dockerhost:8090` and should be able to see the login screen.
 
 
 ## 4. Installing Jellying Media Server on Docker.
