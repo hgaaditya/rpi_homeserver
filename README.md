@@ -62,7 +62,7 @@ Now that we have docker up and running, we can go ahead and start installing our
 <img src="https://cloudash64.net/owncloud/core/img/favicon-touch.svg" width="75" height="75">
 
 1. Head over to the official Owncloud installtion [page](https://doc.owncloud.com/server/admin_manual/installation/docker/) and give it a quick read.
-2. Setup up a project directory for Owncloud ```cd mkdir owncloud && cd owncloud```.
+2. Setup up a project directory for Owncloud ```mkdir owncloud && cd owncloud```.
 3. Create a [docker-compose.yml](Cloudstorage/docker-compose.yml) file as attached/or as in the Official docs.
 ```yaml
 version: '2.1'  # Everything is default from the owncloud git other than the storage mount, which is commented below.
@@ -173,7 +173,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 <img src="https://developer.asustor.com/uploadIcons/0020_999_1568614457_Jellyfin_256.png" width="75" height="75">
 
 1. This process is very similar to Owncloud. Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
-2. Create a Project directory for Jellyfin just like you did for Owncloud ```cd mkdir jellyfin && cd jellyfin```.
+2. Create a Project directory for Jellyfin just like you did for Owncloud ```mkdir jellyfin && cd jellyfin```.
 3. Create a [docker-compose.yml](mediaserver/docker-compose.yml) file as attached/or as in the Official docs.
 ```yaml
 version: "3.5"
@@ -215,7 +215,7 @@ volumes:
 <img src="https://developer.asustor.com/uploadIcons/0020_110807_1589822880_icon%20256.png" width="75" height="75">
 
 1. This is probably the simplest of them all, but still give the [Official Doc](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker) a quick read.
-2. Create a Project directory for Pihole like you did earlier ```cd mkdir pihole && cd pihole```.
+2. Create a Project directory for Pihole like you did earlier ```mkdir pihole && cd pihole```.
 3. Create a [docker-compose.yml](pihole/docker-compose.yml) file as attached or as in the Official Git.
 ```yaml
 version: "3"
