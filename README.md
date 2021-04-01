@@ -5,8 +5,9 @@ What is this 	: An absolute beginners guide to get a Rpi up and running, hosting
 Who is this for?: Anyone who is starting up with Docker, Anyone who is interested in home automation and a DIY server solution but doesn't want to spend a fortune.
 What this isn't	: The most advanced guide, The best guide available.
 
-I will focus on things that needs to be modifed/personalised to get them working. As a lot of these solution are already avialable for Rpi and Docker seperately. But doing them together sometimes introduces wierd issues.
-This is probable onyl Part-1 of a multi part series, we will just be focusing on installation and getting these services running. The 2nd part would probably be setting up the frontend and general usage. And a 3rd would be advanced stuff which I don't have a clear plan for yet.
+*I will focus on things that needs to be modifed/personalised to get them working. As a lot of these solution are already avialable for Rpi and Docker seperately. But doing them together sometimes introduces wierd issues.
+*Please do read the comments I have added in each of the `.yml` files in their corresponding sections. 
+*This is probable onyl Part-1 of a multi part series, we will just be focusing on installation and getting these services running. The 2nd part would probably be setting up the frontend and general usage. And a 3rd would be advanced stuff which I don't have a clear plan for yet.
 
 
 ## Let's get started. 
@@ -21,7 +22,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
 3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snapiness of your system.
 4. The installer is pretty straightforward and you just select the image and disk and jsut hit install .
 
-## Installing Docker. 
+## Installing Docker on RPi. 
 <img src="https://cdn.iconscout.com/icon/free/png-256/social-275-116309.png" width="75" height="75">
 
 > Before you begin.
@@ -48,7 +49,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
 
 Now that we have docker up and running, we can go ahead and start installing our services, which is as simple as creating a `docker-compose.yml` file with all the details and  letting docker do all the heavy lifting :).
 
-## Installing Owncloud Storage server
+## Installing Owncloud Storage server on Docker.
 <img src="https://cloudash64.net/owncloud/core/img/favicon-touch.svg" width="75" height="75">
 
 1. Head over to the official Owncloud installtion [page](https://doc.owncloud.com/server/admin_manual/installation/docker/) and give it a quick read.
@@ -159,7 +160,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 13. Since we have mentioned 8090 in the .env file above, you can now login to http://<dockerhost>:8090 and shoudl be able to see the login screen.
 
 
-## Installing Jellying Media Server
+## Installing Jellying Media Server on Docker.
 <img src="https://developer.asustor.com/uploadIcons/0020_999_1568614457_Jellyfin_256.png" width="75" height="75">
 
 1. This process is very similar to Owncloud. Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
@@ -201,7 +202,7 @@ volumes:
 8. Your Jellyfin Media server is now up and running. check it out on http://<localhost>:8096
 
 
-## Installing Pi-Hole
+## Installing Pi-Hole on Docker.
 <img src="https://developer.asustor.com/uploadIcons/0020_110807_1589822880_icon%20256.png" width="75" height="75">
 
 1. This is probably the simplest of them all, but still give the [Official Doc](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker) a quick read.
@@ -249,11 +250,13 @@ services:
 
 PS: Again this is not a how to do it best,or the most this, most that. This guide doesn't claim to be anything but a guide just to help you get things up and running if you haven't played with similar stuff before. 
 
-Once you cross this initial barrier. You should be pretty acquainted with the Rpi-Docker system. Now you can go ahead and tinker further into things like:
+Once you cross this initial barrier. You should be pretty acquainted with the Rpi-Docker ecosystem. Now you can go ahead and tinker further into things like:
 	- Securing the whole setup, and even securing services individually and enabling https etc.
 	- Implementing performace enhancements like a RAMdisk for the media server for faster trasncoding.
 
 This are just my `to-do` things . But the possibilities are endless. You can integrate home automation extremely easily if you have smart devices already setup as well.
+
+Any advices for improvement/corrections are welcome! 
 
 
     
