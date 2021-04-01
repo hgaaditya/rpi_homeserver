@@ -1,7 +1,7 @@
 # RPi Homeserver 
 <img src="https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001-300x267.png" width="100" height="89">
 
-* What this is?	 : An absolute beginners guide to get a RPi up and running, hosting multiple services for an essential home server.
+* What this is?	 : An absolute beginners guide to get a RPi up and running, hosting multiple services in fault tolerant containers for an essential home server.
 * Who is this for?: Anyone who is starting up with Docker, Anyone who is interested in home automation and a DIY server solution but doesn't want to spend a fortune.
 * What this isn't : The most advanced guide, The best guide available.
 
@@ -253,7 +253,7 @@ services:
 6. Now you have a running Pihole DNS server. 
 
 
-### There you have it. An RPi hosting your basic services over Docker.
+### There you have it. An RPi hosting your basic fault tolerant services over Docker.
 ### This is just the first part. I will follow this up with how to further set these up and tweak them for your liking. This was just the installation related part.
 
 
