@@ -1,21 +1,25 @@
 # RPi Homeserver 
 <img src="https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001-300x267.png" width="100" height="89">
 
-An absolute beginners guide to get a Rpi up and running, hosting multiple servcies for an essential home server. 
+What is this 	: An absolute beginners guide to get a Rpi up and running, hosting multiple servcies for an essential home server. 
+Who is this for?: Anyone who is starting up with Docker, Anyone who is interested in home automation and a DIY server solution but doesn't want to spend a fortune.
+What this isn't	: The most advanced guide, The best guide available.
 
 I will focus on things that needs to be modifed/personalised to get them working. As a lot of these solution are already avialable for Rpi and Docker seperately. But doing them together sometimes introduces wierd issues.
+This is probable onyl Part-1 of a multi part series, we will just be focusing on installation and getting these services running. The 2nd part would probably be setting up the frontend and general usage. And a 3rd would be advanced stuff which I don't have a clear plan for yet.
+
 
 ## Let's get started. 
 
-Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 for my installtion just because of it's widespread community and ease of use. (But this turned   out to be not the greatest chioce since Rpi OS is still the only OS which support some nifty functions like HWA,but more on that later)
+Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 for my installtion just because of it's widespread community and ease of use. (But this turned out to be not the greatest chioce since Rpi OS is still the only OS which support some nifty functions like HWA,but more on that later). But Ubuntu should work for 99% of users.
 
   ### Installing OS
   <img src="https://www.shareicon.net/data/256x256/2015/07/27/75996_ubuntu_256x256.png" width="75" height="75">
 
-    1. Download the latest image from https://ubuntu.com/download/raspberry-pi
-    2. Download the Raspberry Pi Imager from https://www.raspberrypi.org/software/
-    3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snapiness of your system.
-    4. The installer is pretty straightforward and you just select the image and disk and jsut hit install .
+1. Download the latest image from https://ubuntu.com/download/raspberry-pi
+2. Download the Raspberry Pi Imager from https://www.raspberrypi.org/software/
+3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snapiness of your system.
+4. The installer is pretty straightforward and you just select the image and disk and jsut hit install .
 
 ## Installing Docker. 
 <img src="https://cdn.iconscout.com/icon/free/png-256/social-275-116309.png" width="75" height="75">
@@ -34,12 +38,12 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
           cd docker
           wget https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/arm64/containerd.io_1.4.4-1_arm64.deb
      ```
- 2. Once downloaded, you can run the ```sudo dpkg -i *``` to install all 3 packages. 
- 3. And you're done!.... Not really. We still need to install `docker-compose` but for now, Verify the install by runnning ```sudo docker run hello-world```
- 4. Okay so the last step here is to install [docker-compose](https://docs.docker.com/compose/install/#install-using-pip). Again because the repo for arm64 is a little borked. You would have to install it with pip. For which you need Python(3).
- 5. Go ahead and install pyton3, pip and any other required dependecies listed here [Official Doc](https://docs.docker.com/compose/install/#install-using-pip).
- 6. Then just run `sudo pip install docker-compose`. 
- 7. That's it. For real this time. Verify by running `docker-compose --version` .
+2. Once downloaded, you can run the ```sudo dpkg -i *``` to install all 3 packages. 
+3. And you're done!.... Not really. We still need to install `docker-compose` but for now, Verify the install by runnning ```sudo docker run hello-world```
+4. Okay so the last step here is to install [docker-compose](https://docs.docker.com/compose/install/#install-using-pip). Again because the repo for arm64 is a little borked. You would have to install it with pip. For which you need Python(3).
+5. Go ahead and install pyton3, pip and any other required dependecies listed here [Official Doc](https://docs.docker.com/compose/install/#install-using-pip).
+6. Then just run `sudo pip install docker-compose`. 
+7. That's it. For real this time. Verify by running `docker-compose --version` .
 
 
 Now that we have docker up and running, we can go ahead and start installing our services, which is as simple as creating a `docker-compose.yml` file with all the details and  letting docker do all the heavy lifting :).
