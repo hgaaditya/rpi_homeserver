@@ -1,36 +1,36 @@
 # RPi Homeserver 
 <img src="https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001-300x267.png" width="100" height="89">
 
-What is this 	: An absolute beginners guide to get a Rpi up and running, hosting multiple servcies for an essential home server. 
+What this is? 	: An absolute beginners guide to get a RPi up and running, hosting multiple services for an essential home server. 
 Who is this for?: Anyone who is starting up with Docker, Anyone who is interested in home automation and a DIY server solution but doesn't want to spend a fortune.
 What this isn't	: The most advanced guide, The best guide available.
 
-*I will focus on things that needs to be modifed/personalised to get them working. As a lot of these solution are already avialable for Rpi and Docker seperately. But doing them together sometimes introduces wierd issues.
+*I will focus on things that needs to be modified/personalized to get them working. As a lot of these solutions are already available for RPi and Docker separately. But doing them together sometimes introduces weird issues.
 *Please do read the comments I have added in each of the `.yml` files in their corresponding sections. 
-*This is probable onyl Part-1 of a multi part series, we will just be focusing on installation and getting these services running. The 2nd part would probably be setting up the frontend and general usage. And a 3rd would be advanced stuff which I don't have a clear plan for yet.
+*This is probably only Part-1 of a multi-part series, we will just be focusing on installation and getting these services running. The 2nd part would probably be setting up the frontend and general usage. And a 3rd would be advanced stuff which I don't have a clear plan for yet.
 
 
 ## Let's get started. 
 
-Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 for my installtion just because of it's widespread community and ease of use. (But this turned out to be not the greatest chioce since Rpi OS is still the only OS which support some nifty functions like HWA,but more on that later). But Ubuntu should work for 99% of users.
+Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 for my installation just because of its widespread community and ease of use. (But this turned out to be not the greatest choice since RPi OS is still the only OS which support some nifty functions like HWA, but more on that later). But Ubuntu should work for 99% of users.
 
   ### Installing OS
   <img src="https://www.shareicon.net/data/256x256/2015/07/27/75996_ubuntu_256x256.png" width="75" height="75">
 
 1. Download the latest image from https://ubuntu.com/download/raspberry-pi
 2. Download the Raspberry Pi Imager from https://www.raspberrypi.org/software/
-3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snapiness of your system.
-4. The installer is pretty straightforward and you just select the image and disk and jsut hit install .
+3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snappiness of your system.
+4. The installer is pretty straightforward, and you just select the image and disk and just hit install.
 
 ## Installing Docker on RPi. 
 <img src="https://cdn.iconscout.com/icon/free/png-256/social-275-116309.png" width="75" height="75">
 
 > Before you begin.
- As of writing this, there is something wrong with arm64 branch the docker repo. Which doesn't let you install using the repo. So you have to manually download the packages and install them using the guide https://docs.docker.com/engine/install/ubuntu/#install-from-a-package. But it seems like a pretty trivial issue and should be fixed pretty soon.So do check it out before you start.
+ As of writing this, there is something wrong with arm64 branch the docker repo. Which doesn't let you install using the repo. So you have to manually download the packages and install them using the guide https://docs.docker.com/engine/install/ubuntu/#install-from-a-package. But it seems like a pretty trivial issue and should be fixed pretty soon. So do check it out before you start.
 
 >  One more important thing is using root user for Docker. Because docker(And the servies we will be using) will eventually require you to have user with all the privileges of a root user, so if you don't want the hassle of service users then I'd suggest using root. 
 
-1. Go to https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/arm64/ and download the follwoing files: #Make sure you use the correct version based on your release like focal,bionic,xenial etc.
+1. Go to https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/arm64/ and download the following files: #Make sure you use the correct version based on your release like focal, bionic ,xenial etc.
   - containerd.io_<lates_version>_arm64.deb
   - docker-ce-cli_<lates_version>_arm64.deb
   - docker-ce_<lates_version>_arm64.deb
@@ -40,11 +40,11 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
           wget https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/arm64/containerd.io_1.4.4-1_arm64.deb
      ```
 2. Once downloaded, you can run the ```sudo dpkg -i *``` to install all 3 packages. 
-3. And you're done!.... Not really. We still need to install `docker-compose` but for now, Verify the install by runnning ```sudo docker run hello-world```
+3. And you're done!.... Not really. We still need to install `docker-compose` but for now, Verify the installation by running ```sudo docker run hello-world```
 4. Okay so the last step here is to install [docker-compose](https://docs.docker.com/compose/install/#install-using-pip). Again because the repo for arm64 is a little borked. You would have to install it with pip. For which you need Python(3).
-5. Go ahead and install pyton3, pip and any other required dependecies listed here [Official Doc](https://docs.docker.com/compose/install/#install-using-pip).
+5. Go ahead and install pyton3, pip and any other required dependencies listed here [Official Doc](https://docs.docker.com/compose/install/#install-using-pip).
 6. Then just run `sudo pip install docker-compose`. 
-7. That's it. For real this time. Verify by running `docker-compose --version` .
+7. That's it. For real this time. Verify by running `docker-compose --version`.
 
 
 Now that we have docker up and running, we can go ahead and start installing our services, which is as simple as creating a `docker-compose.yml` file with all the details and  letting docker do all the heavy lifting :).
@@ -138,16 +138,16 @@ ADMIN_PASSWORD=admin
 HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don't need to modify the docker-compose . You can just use any free port and pass it here so that it                     will bind to the 8080 port of the owncloud conatiner.
 
 ```
-5. Please go thorugh the comments I have added as it might save you some headache later on. Only if you are an abolute noob like I am.
+5. Please go through the comments I have added as it might save you some headache later on. Only if you are an absolute noob like I am.
 6. Once you have your files ready. Go ahead and run ```sudo docker-compose up -d``` from the same directory.
 7. That's it. Well mostly. You should now have the following containers running which you can check by running ```sudo docker ps -a```
-      - owncloud_owncloud_1 # the service and the webserver.
+      - owncloud_owncloud_1 # the service and the web server.
       - owncloud_redis_1 # The Redis container.
       - owncloud_bd_1 # The MySQL container. 
 8. Now you are almost done. But there is one thing you need to do if you want to host some local storage. Owncloud does not enable this by default and needs to be manually added as mentioned [here](https://doc.owncloud.com/server/admin_manual/configuration/files/external_storage/local.html)
-9. Once you have your containers running log into the main owncloud service conatiner with the follwoing command :
+9. Once you have your containers running log into the main owncloud service container with the following command :
 	- ```sudo docker exec -it owncloud_owncloud_1 bash```
-10. Once inside you need to navigate to the `/var/www/owncloud/config/config.php`. But your bash should have already landed you in the home dir i.e. `/var/www/owncloud`
+10. Once inside you need to navigate to the `/var/www/owncloud/config/config.php`. But your bash should have already landed you in the home directory i.e. `/var/www/owncloud`
 11. So you can just `vi config/config.php` and append this line `'files_external_allow_create_new_local' => 'true',` as you see [here](Cloudstorage/config.php)
 ```php
   'logtimezone' => 'UTC',
@@ -157,14 +157,14 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 );
 ```
 12. Once done, you can exit from the container. And back in your project directory, just run the `docker-compose.yml` to recreate the container with the updated values.
-13. Since we have mentioned 8090 in the .env file above, you can now login to http://<dockerhost>:8090 and shoudl be able to see the login screen.
+13. Since we have mentioned 8090 in the .env file above, you can now log in to http://<dockerhost>:8090 and should be able to see the login screen.
 
 
 ## Installing Jellying Media Server on Docker.
 <img src="https://developer.asustor.com/uploadIcons/0020_999_1568614457_Jellyfin_256.png" width="75" height="75">
 
 1. This process is very similar to Owncloud. Start by heading to the Official [Jellyfin Docs](https://jellyfin.org/docs/general/administration/installing.html) and glance it over.
-2. Create a Project directoy for Jellyfin just like you did for Owncloud ```cd mkdir jellyfin && cd jellyfin```.
+2. Create a Project directory for Jellyfin just like you did for Owncloud ```cd mkdir jellyfin && cd jellyfin```.
 3. Create a [docker-compose.yml](mediaserver/docker-compose.yml) file as attached/or as in the Official docs.
 ```yaml
 version: "3.5"
@@ -192,21 +192,21 @@ volumes:
     external: true
 ```
 >  I'd suggest you go through the comments added in the above file for this one as it has some changes that are necessary for proper fucntioning.
-4. Now we can create volumes (Not mandatory, docker-compose can create them during startup. But I had created them already so I'm passing them externally, refer the volumes section at the bottom of the [docker-compose.yml](mediaserver/docker-compose.yml) file. )
+4. Now we can create volumes (Not mandatory, docker-compose can create them during startup. But I had created them already, so I'm passing them externally, refer to the volumes section at the bottom of the [docker-compose.yml](mediaserver/docker-compose.yml) file. )
 ```
 	- docker volume create jellyfin-config
 	- docker volume create jellyfin-cache	
 ```
 6. Once the file is ready run ```sudo docker-compose up -d```.
-7. Bingo!. Verify that everything is working as epxpected ```sudo docker ps -a```.
-8. Your Jellyfin Media server is now up and running. check it out on http://<localhost>:8096
+7. Bingo!. Verify that everything is working as expected ```sudo docker ps -a```.
+8. Your Jellyfin Media server is now up and running. Check it out on http://<localhost>:8096
 
 
 ## Installing Pi-Hole on Docker.
 <img src="https://developer.asustor.com/uploadIcons/0020_110807_1589822880_icon%20256.png" width="75" height="75">
 
 1. This is probably the simplest of them all, but still give the [Official Doc](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker) a quick read.
-2. Create a Project directoy for Pihole like you did earlier ```cd mkdir pihole && cd pihole```.
+2. Create a Project directory for Pihole like you did earlier ```cd mkdir pihole && cd pihole```.
 3. Create a [docker-compose.yml](pihole/docker-compose.yml) file as attached or as in the Official Git.
 ```yaml
 version: "3"
@@ -244,22 +244,19 @@ services:
 6. Now you have a running Pihole DNS server. 
 
 
-### There you have it . A Rpi hosting your basic services over Docker.
+### There you have it. Aa RPi hosting your basic services over Docker.
 ### This is just the first part. I will follow this up with how to further set these up and tweak them for your liking. This was just the installation related part.
 
 
-PS: Again this is not a how to do it best,or the most this, most that. This guide doesn't claim to be anything but a guide just to help you get things up and running if you haven't played with similar stuff before. 
+PS: Again this is not a how to do it best, or the most this, most that. This guide doesn't claim to be anything but a guide just to help you get things up and running if you haven't played with similar stuff before. 
 
-Once you cross this initial barrier. You should be pretty acquainted with the Rpi-Docker ecosystem. Now you can go ahead and tinker further into things like:
+Once you cross this initial barrier. You should be pretty acquainted with the RPi-Docker ecosystem. Now you can go ahead and tinker further into things like:
 	- Securing the whole setup, and even securing services individually and enabling https etc.
-	- Implementing performace enhancements like a RAMdisk for the media server for faster trasncoding.
+	- Implementing performance enhancements like a RAMdisk for the media server for faster transcoding.
 
-This are just my `to-do` things . But the possibilities are endless. You can integrate home automation extremely easily if you have smart devices already setup as well.
+These are just my `to-do` things. But the possibilities are endless. You can integrate home automation extremely easily if you have smart devices already setup as well.
 
-Any advices for improvement/corrections are welcome! 
-
-
-    
+Any advices for improvement/corrections are welcome!  
 
 
 
