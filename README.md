@@ -245,7 +245,7 @@ services:
 6. Now you have a running Pihole DNS server. 
 
 
-### There you have it. Aa RPi hosting your basic services over Docker.
+### There you have it. An RPi hosting your basic services over Docker.
 ### This is just the first part. I will follow this up with how to further set these up and tweak them for your liking. This was just the installation related part.
 
 
