@@ -5,6 +5,11 @@
 * Who is this for?: Anyone who is starting up with Docker, Anyone who is interested in home automation and a DIY server solution but doesn't want to spend a fortune.
 * What this isn't : The most advanced guide, The best guide available.
 
+By the end if it, you'll have:
+1. You own cloud storage solution .
+2. Your own media streaming server.
+3. A DNS ad-blocker blocking ads for your entire home.
+
 ### Before we start:
 * I will focus on things that needs to be modified/personalized to get them working. As a lot of these solutions are already available for RPi and Docker separately. But doing them together sometimes introduces weird issues.
 * Please do read the comments I have added in each of the `.yml` files in their corresponding sections. 
