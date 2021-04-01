@@ -48,7 +48,7 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
 2. Once downloaded, you can run the ```sudo dpkg -i *``` to install all 3 packages. 
 3. And you're done!.... Not really. We still need to install `docker-compose` but for now, Verify the installation by running ```sudo docker run hello-world```
 4. Okay so the last step here is to install [docker-compose](https://docs.docker.com/compose/install/#install-using-pip). Again because the repo for arm64 is a little borked. You would have to install it with pip. For which you need Python(3).
-5. Go ahead and install pyton3, pip and any other required dependencies listed here [Official Doc](https://docs.docker.com/compose/install/#install-using-pip).
+5. Go ahead and install python3, pip and any other required dependencies listed here [Official Doc](https://docs.docker.com/compose/install/#install-using-pip).
 6. Then just run `sudo pip install docker-compose`. 
 7. That's it. For real this time. Verify by running `docker-compose --version`.
 
