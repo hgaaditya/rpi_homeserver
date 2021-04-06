@@ -26,5 +26,8 @@
      - Scroll down to the bottom of the page and make sure you have these two properties set 
             ![image](https://user-images.githubusercontent.com/26784551/113734924-65090a80-9719-11eb-92b0-6b1649f1ebb4.png)
         > These properties are not any officical recommendations from the docs. These are just what I fiddled around and found a good balance that works.
+ 
+5. You can add other Libraries simlarly and just explore around the UI. You can configure multiple if you are sharing this server with friends or family.
+6. I will continue to add any other steps if I find them necessary.
   
    
