@@ -5,4 +5,4 @@
     - From the docker host run the following command:
        `docker exec -it pihole_container_name pihole -a -p`
 3. Once logged in you should be able to see your dashboard :
-      
+      ![image](https://user-images.githubusercontent.com/26784551/113739986-ef536d80-971d-11eb-9598-f3427ca6ce67.png)
