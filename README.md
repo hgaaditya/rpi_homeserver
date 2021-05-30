@@ -167,6 +167,7 @@ HTTP_PORT=8090 # This is where we are handlign the port binding. So that you don
 ```
 11. Once done, you can exit from the container. And back in your project directory, just run the `sudo docker restart owncloud_owncloud_1` to recreate the container with the updated values.
 12. Since we have mentioned 8090 as the port in the .env file above, you can now log in to `http://dockerhost:8090` and should be able to see the login screen.
+13. Head over to [The OwnCloud Setup guide.](https://github.com/hgaaditya/rpi_homeserver/tree/main/Cloudstorage) for the Setup instructions.
 
 
 ## 4. Installing Jellying Media Server on Docker.
@@ -209,6 +210,7 @@ volumes:
 6. Once the file is ready run ```sudo docker-compose up -d```.
 7. Bingo!. Verify that everything is working as expected ```sudo docker ps -a```.
 8. Your Jellyfin Media server is now up and running. Check it out on http://<localhost>:8096
+9. You can check the remaining steps via [The JellyFin server Setup.](https://github.com/hgaaditya/rpi_homeserver/tree/main/mediaserver)	
 
 
 ## 5. Installing Pi-Hole on Docker.
@@ -251,10 +253,17 @@ services:
 4. Just run ```sudo docker-compose up -d```. 
 5. It's that easy!. Verify by running ```sudo docker ps -a```.
 6. Now you have a running Pihole DNS server. 
+7. You can check this guide for [setting up the pihole](https://github.com/hgaaditya/rpi_homeserver/tree/main/pihole)
 
 
 ### There you have it. An RPi hosting your basic fault tolerant services over Docker.
-### This is just the first part. I will follow this up with how to further set these up and tweak them for your liking. This was just the installation related part.
+	
+<s>This is just the first part. I will follow this up with how to further set these up and tweak them for your liking. This was just the installation related part.</s>
+	
+The second parts have been added to the respective services, Check the last points. Adding them below as a consolidated list. 
+*  [The OwnCloud Setup guide.](https://github.com/hgaaditya/rpi_homeserver/tree/main/Cloudstorage)
+*  [The JellyFin server Setup.](https://github.com/hgaaditya/rpi_homeserver/tree/main/mediaserver)
+*  [Pi-hole Setup.](https://github.com/hgaaditya/rpi_homeserver/tree/main/pihole)
 
 
 PS: Again this is not a how to do it best, or the most this, most that. This guide doesn't claim to be anything but a guide just to help you get things up and running if you haven't played with similar stuff before. 
@@ -265,4 +274,6 @@ Once you cross this initial barrier. You should be pretty acquainted with the RP
 
 These are just my `to-do` things. But the possibilities are endless. You can integrate home automation extremely easily if you have smart devices already setup as well.
 
-Any advices for improvement/corrections are welcome!  
+Any advices for improvement/corrections are welcome! 
+
+Find me over on [Medium](https://hgaaditya.medium.com/) 
