@@ -1,0 +1,20 @@
+1. Check your current CPU frequency 
+
+# watch -n 1 vcgencmd measure_clock arm
+
+2. Check the current CPU Governor
+
+# cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+3. Set the governor to `Performance`
+
+# echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+# echo performance > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+
+# echo performance > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+
+# echo performance > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+
+4. Verify the CPU freq again. And you should see that it is running at 1.5 GHz.
+
