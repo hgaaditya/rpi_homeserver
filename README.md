@@ -29,6 +29,12 @@ Let's start with what OS you want to go ahead with. I have chosen Ubuntu 20.04 f
 3. Use a good Class 10 or UHS Class 1 card for your OS as this would have a big impact on the overall snappiness of your system.
 4. The installer is pretty straightforward, and you just select the image and disk and just hit install.
 
+### 1a. Setting up the OS.
+
+   Follow the [performance tweaks](/rpi_performance_tweaks.txt) to set up the performance CPU governors to ensure smooth functioning.
+		
+   You can choose to skip this if you are just installing a Pi-Hole or a single service. This is more of a necessity only while deploying the qhole suite.
+
 
 ## 2. Installing Docker on RPi. 
 <img src="https://cdn.iconscout.com/icon/free/png-256/social-275-116309.png" width="75" height="75">
